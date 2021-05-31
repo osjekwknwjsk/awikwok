@@ -1,6 +1,6 @@
 # t.me/user_legend
 
-Ready Jasa Install Script Premium
+Ready Script Premium
 
 Feature Service Script :
 
