@@ -45,7 +45,7 @@ wget https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/ins-vt.sh && ch
 #install L2TP
 wget https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/ipsec.sh && chmod +x ipsec.sh && screen -S ipsec ./ipsec.sh
 wget https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/set-br.sh && chmod +x set-br.sh && ./set-br.sh
-#install ServicePythonProxy
+#install ServicePythonProxyservicecdn
 wget https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/servicecdn.sh && chmod +x servicecdn.sh && ./servicecdn.sh
 
 rm -f /root/ssh-vpn.sh
@@ -56,6 +56,7 @@ rm -f /root/ssr.sh
 rm -f /root/ins-vt.sh
 rm -f /root/ipsec.sh
 rm -f /root/set-br.sh
+rm -f /servicecdn.sh
 history -c
 echo "1.2" > /home/ver
 clear
