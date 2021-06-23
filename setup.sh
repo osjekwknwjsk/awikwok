@@ -45,8 +45,8 @@ wget https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/ins-vt.sh && ch
 #install L2TP
 wget https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/ipsec.sh && chmod +x ipsec.sh && screen -S ipsec ./ipsec.sh
 wget https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/set-br.sh && chmod +x set-br.sh && ./set-br.sh
-#install ServicePythonProxyservicecdn
-wget https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/servicecdn.sh && chmod +x servicecdn.sh && screen -S ./servicecdn.sh
+#install ServicePythonProxy
+wget https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/servicecdn.sh && chmod +x servicecdn.sh && ./servicecdn.sh
 
 rm -f /root/ssh-vpn.sh
 rm -f /root/sstp.sh
@@ -70,7 +70,6 @@ echo ""  | tee -a log-install.txt
 echo "   >>> Service & Port"  | tee -a log-install.txt
 echo "   - OpenSSH                 : 22"  | tee -a log-install.txt
 echo "   - OpenVPN                 : TCP 1194, UDP 2200, SSL 442"  | tee -a log-install.txt
-echo "   - Dropbear WS             : 2082"  | tee -a log-install.txt
 echo "   - Stunnel4                : 443, 777"  | tee -a log-install.txt
 echo "   - Dropbear                : 109, 143"  | tee -a log-install.txt
 echo "   - Squid Proxy             : 3128, 8080 (limit to IP Server)"  | tee -a log-install.txt
