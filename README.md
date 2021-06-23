@@ -37,10 +37,10 @@ Harga : » Qris (Dana,Gopay,OVO,DLL.)
 120k / 2 ip / lifetime
 
 Price : » Paypal
-2 usd / 1 ip / 1 bulan
+2 usd / 1 ip / 1 month
 
-8 usd / 1 ip / lifetime
+8,05 usd / 1 ip / lifetime
 
-12 usd / 2 ip / lifetime
+12,05 usd / 2 ip / lifetime
 
 Contact Me : @user_legend
