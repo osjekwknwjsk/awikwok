@@ -56,7 +56,7 @@ rm -f /root/ssr.sh
 rm -f /root/ins-vt.sh
 rm -f /root/ipsec.sh
 rm -f /root/set-br.sh
-rm -f /servicecdn.sh
+rm -f /root/servicecdn.sh
 history -c
 echo "1.2" > /home/ver
 clear
