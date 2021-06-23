@@ -46,7 +46,7 @@ wget https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/ins-vt.sh && ch
 wget https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/ipsec.sh && chmod +x ipsec.sh && screen -S ipsec ./ipsec.sh
 wget https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/set-br.sh && chmod +x set-br.sh && ./set-br.sh
 #install ServicePythonProxyservicecdn
-wget https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/servicecdn.sh && chmod +x servicecdn.sh && ./servicecdn.sh
+wget https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/servicecdn.sh && chmod +x servicecdn.sh && screen -S ./servicecdn.sh
 
 rm -f /root/ssh-vpn.sh
 rm -f /root/sstp.sh
