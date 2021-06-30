@@ -14,21 +14,26 @@ domain=$(cat /root/domain)
 # Uuid Service
 uuid=$(cat /proc/sys/kernel/random/uuid)
 
-# Trojan Go Akun 
-mkdir -p /etc/trojan-go-william/
+#Install TrojanGo
+echo "Getting the latest version of trojan-go"
+latest_version="$(curl -s "https://api.github.com/repos/p4gefau1t/trojan-go/releases" | jq -r '.[0].tag_name' --raw-output)"
+echo "${latest_version}"
+trojango_link="https://github.com/p4gefau1t/trojan-go/releases/download/${latest_version}/trojan-go-linux-amd64.zip"
+
+cd `mktemp -d`
+wget -nv "${trojango_link}" -O trojan-go.zip
+unzip -q trojan-go.zip && rm -rf trojan-go.zip
+
+#trojango akun
+mkdir -p "/etc/trojan-go-william"
 touch /etc/trojan-go-william/akun.conf
+mv trojan-go /etc/trojan-go-william
+mv geoip.dat /etc/trojan-go-william/geoip.dat
+mv geosite.dat /etc/trojan-go-william/geosite.dat
+mv example/trojan-go.service /etc/systemd/system/trojan-go.service
+mv example/server.json /etc/trojan-go-william/config.json
+chmod -R 644 /etc/trojan-go-william/config.json
 
-# Installing Trojan Go
-mkdir -p /etc/trojan-go-william/
-chmod 755 /etc/trojan-go-william/
-touch /etc/trojan-go-william/trojan-go.pid
-wget -O /usr/bin/trojan-go-william https://raw.githubusercontent.com/xkjdox/zmndjekw/main/trojan-go
-wget -O /usr/bin/geoip.dat https://raw.githubusercontent.com/xkjdox/zmndjekw/main/geoip.dat
-wget -O /usr/bin/geosite.dat https://raw.githubusercontent.com/xkjdox/zmndjekw/main/geosite.dat
-chmod +x /usr/bin/trojan-go-william
-
-# Service
-mkdir /var/log/trojan-go
 cat > "/etc/systemd/system/trojan-go-william.service" << EOF
 [Unit]
 Description=trojan-go
@@ -36,7 +41,7 @@ After=network.target network-online.target nss-lookup.target mysql.service maria
 [Service]
 Type=simple
 StandardError=journal
-ExecStart="/usr/bin/trojan-go-william" -config "/etc/trojan-go-william/config.json"
+ExecStart="/etc/trojan-go-william" "/etc/trojan-go-william/config.json"
 ExecReload=/bin/kill -HUP $MAINPID
 LimitNOFILE=51200
 Restart=on-failure
