@@ -1,7 +1,4 @@
 #!/bin/bash
-# Trojan Go Auto Setup 
-# Script By Akbar Maulana
-# =========================
 
 # Installing Wget & Curl
 apt update -y
