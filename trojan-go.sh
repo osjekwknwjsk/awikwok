@@ -1,4 +1,7 @@
 #!/bin/bash
+# Trojan Go Auto Setup 
+# Script By Akbar Maulana
+# =========================
 
 # Installing Wget & Curl
 apt update -y
@@ -14,48 +17,47 @@ domain=$(cat /root/domain)
 # Uuid Service
 uuid=$(cat /proc/sys/kernel/random/uuid)
 
-#Install TrojanGo
-echo "Getting the latest version of trojan-go"
-latest_version="$(curl -s "https://api.github.com/repos/p4gefau1t/trojan-go/releases" | jq -r '.[0].tag_name' --raw-output)"
-echo "${latest_version}"
-trojango_link="https://github.com/p4gefau1t/trojan-go/releases/download/${latest_version}/trojan-go-linux-amd64.zip"
+# Trojan Go Akun 
+mkdir -p /etc/trojan-go-mini/
+touch /etc/trojan-go-mini/akun.conf
 
-cd `mktemp -d`
-wget -nv "${trojango_link}" -O trojan-go.zip
-unzip -q trojan-go.zip && rm -rf trojan-go.zip
+# Installing Trojan Go
+mkdir -p /etc/trojan-go-mini/
+chmod 755 /etc/trojan-go-mini/
+touch /etc/trojan-go-mini/trojan-go.pid
+wget -O /usr/bin/trojan-go-mini https://wildyproject.net/Script/trojan-go/trojan-go
+wget -O /usr/bin/geoip.dat https://wildyproject.net/Script/trojan-go/geoip.dat
+wget -O /usr/bin/geosite.dat https://wildyproject.net/Script/trojan-go/geosite.dat
+chmod +x /usr/bin/trojan-go-mini
 
-#trojango akun
-mkdir -p "/etc/trojan-go-william"
-touch /etc/trojan-go-william/akun.conf
-mv trojan-go /etc/trojan-go-william
-mv geoip.dat /etc/trojan-go-william/geoip.dat
-mv geosite.dat /etc/trojan-go-william/geosite.dat
-mv example/trojan-go.service /etc/systemd/system/trojan-go.service
-mv example/server.json /etc/trojan-go-william/config.json
-chmod -R 644 /etc/trojan-go-william/config.json
-
-cat > "/etc/systemd/system/trojan-go-william.service" << EOF
+# Service
+mkdir /var/log/trojan-go
+cat > /etc/systemd/system/trojan-go-mini.service << END
 [Unit]
-Description=trojan-go
-After=network.target network-online.target nss-lookup.target mysql.service mariadb.service mysqld.service
+Description=Trojan-Go Mini Service
+Documentation=https://p4gefau1t.github.io/trojan-go/
+Documentation=https://github.com/trojan-gfw/trojan
+After=network.target
+
 [Service]
 Type=simple
-StandardError=journal
-ExecStart="/etc/trojan-go-william" "/etc/trojan-go-william/config.json"
+PIDFile=/etc/trojan-go-mini/trojan-go.pid
+ExecStart=/usr/bin/trojan-go-mini -config /etc/trojan-go-mini/config.json
 ExecReload=/bin/kill -HUP $MAINPID
-LimitNOFILE=51200
 Restart=on-failure
-RestartSec=1s
+RestartSec=10
+RestartPreventExitStatus=23
+
 [Install]
 WantedBy=multi-user.target
-EOF
+END
 
 # Config
-cat > /etc/trojan-go-william/config.json << END
+cat > /etc/trojan-go-mini/config.json << END
 {
   "run_type": "server",
   "local_addr": "0.0.0.0",
-  "local_port": 2096,
+  "local_port": 666,
   "remote_addr": "127.0.0.1",
   "remote_port": 81,
   "log_level": 1,
@@ -156,12 +158,10 @@ cat > /etc/trojan-go-william/config.json << END
 }
 END
 
-#Allow Port
-
 # Starting
 systemctl daemon-reload
-systemctl enable trojan-go-william
-systemctl start trojan-go-william
+systemctl enable trojan-go-mini
+systemctl start trojan-go-mini
 
 
 #path cert /etc/v2ray/v2ray.crt
