@@ -29,25 +29,21 @@ chmod +x /usr/bin/trojan-go-william
 
 # Service
 mkdir /var/log/trojan-go
-cat > /etc/systemd/system/trojan-go-william.service << END
+cat > "/etc/systemd/system/trojan-go-william.service" << EOF
 [Unit]
-Description=Trojan-Go Mini Service
-Documentation=https://p4gefau1t.github.io/trojan-go/
-Documentation=https://github.com/trojan-gfw/trojan
-After=network.target
-
+Description=trojan-go
+After=network.target network-online.target nss-lookup.target mysql.service mariadb.service mysqld.service
 [Service]
 Type=simple
-PIDFile=/etc/trojan-go-william/trojan-go.pid
-ExecStart=/usr/bin/trojan-go-william -config /etc/trojan-go-william/config.json
+StandardError=journal
+ExecStart="/usr/bin/trojan-go-william" -config "/etc/trojan-go-william/config.json"
 ExecReload=/bin/kill -HUP $MAINPID
+LimitNOFILE=51200
 Restart=on-failure
-RestartSec=10
-RestartPreventExitStatus=23
-
+RestartSec=1s
 [Install]
 WantedBy=multi-user.target
-END
+EOF
 
 # Config
 cat > /etc/trojan-go-william/config.json << END
