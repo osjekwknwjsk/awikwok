@@ -47,7 +47,7 @@ sed -i "s/### $user $exp/### $user $exp4/g" /etc/trojan-go-william/akun.conf
 clear
 echo ""
 echo " Trojan-GO Account Was Successfully Renewed"
-echo " ============================"
+echo " =========================================="
 echo " Client Name : $user"
 echo " Expired On  : $exp4"
-echo " ============================"
+echo " =========================================="
