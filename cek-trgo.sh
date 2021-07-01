@@ -4,7 +4,7 @@ green='\e[0;32m'
 NC='\e[0m'
 MYIP=$(wget -qO- ipinfo.io/ip);
 echo "Checking VPS"
-data=( `cat /var/log/trojan-go | grep -w 'authenticated as' | awk '{print $7}' | sort | uniq`);
+data=( `cat /var/log/trojan-go.log | grep -w 'authenticated as' | awk '{print $7}' | sort | uniq`);
 echo "----------------------------------";
 echo "-----=[ Trojan-GO User Login ]=-----";
 echo "----------------------------------";
