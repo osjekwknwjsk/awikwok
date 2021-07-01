@@ -281,7 +281,9 @@ wget -O xp "https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/xp.sh"
 wget -O update-kernel "https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/update-kernel.sh"
 wget -O cek-service "https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/cek-service.sh"
 wget -O add-trgo "https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/add-trgo.sh"
+wget -O cek-trgo "https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/cek-trgo.sh"
 wget -O del-trgo "https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/del-trgo.sh"
+wget -O renew-trgo "https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/renew-trgo.sh"
 chmod +x add-host
 chmod +x add-sub
 chmod +x menu
@@ -315,7 +317,9 @@ chmod +x xp
 chmod +x update-kernel
 chmod +x cek-service
 chmod +x add-trgo
+chmod +x cek-trgo
 chmod +x del-trgo
+chmod +x renew-trgo
 sed -i 's/\r$//' update-kernel.sh
 sed -i 's/\r$//' cek-service.sh
 echo "0 0 * * * root xp" >> /etc/crontab
