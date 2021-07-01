@@ -41,9 +41,9 @@ sed -i '/^,"'"$user"'"$/d' /etc/trojan-go-william/config.json
 systemctl restart trojan
 service cron restart
 clear
-echo " =========================="
+echo " ======================================="
 echo " Trojan-GO Account Deleted Successfully"
-echo " =========================="
+echo " ======================================="
 echo " Client Name : $user"
 echo " Expired On  : $exp"
-echo " =========================="
+echo " ======================================="
