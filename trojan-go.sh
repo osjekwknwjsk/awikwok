@@ -15,31 +15,30 @@ domain=$(cat /root/domain)
 uuid=$(cat /proc/sys/kernel/random/uuid)
 
 # Trojan Go Akun 
-mkdir -p /etc/trojan-go-mini/
-touch /etc/trojan-go-mini/akun.conf
+mkdir -p /etc/trojan-go-william/
+touch /etc/trojan-go-william/akun.conf
 
 # Installing Trojan Go
-mkdir -p /etc/trojan-go-mini/
-chmod 755 /etc/trojan-go-mini/
-touch /etc/trojan-go-mini/trojan-go.pid
-wget -O /usr/bin/trojan-go-mini https://wildyproject.net/Script/trojan-go/trojan-go
-wget -O /usr/bin/geoip.dat https://wildyproject.net/Script/trojan-go/geoip.dat
-wget -O /usr/bin/geosite.dat https://wildyproject.net/Script/trojan-go/geosite.dat
-chmod +x /usr/bin/trojan-go-mini
+mkdir -p /etc/trojan-go-william/
+chmod 755 /etc/trojan-go-william/
+touch /etc/trojan-go-william/trojan-go.pid
+wget -O /etc/trojan-go-william https://raw.githubusercontent.com/xkjdox/zmndjekw/main/trojan-go
+wget -O /etc/trojan-go-william/geoip.dat https://raw.githubusercontent.com/xkjdox/zmndjekw/main/geoip.dat
+wget -O /etc/trojan-go-william/geosite.dat https://raw.githubusercontent.com/xkjdox/zmndjekw/main/geosite.dat
+chmod +x /etc/trojan-go-william/trojan-go-william
 
 # Service
 mkdir /var/log/trojan-go
-cat > /etc/systemd/system/trojan-go-mini.service << END
+cat > /etc/systemd/system/trojan-go-william.service << END
 [Unit]
-Description=Trojan-Go Mini Service
+Description=Trojan-Go
 Documentation=https://p4gefau1t.github.io/trojan-go/
-Documentation=https://github.com/trojan-gfw/trojan
 After=network.target
 
 [Service]
 Type=simple
-PIDFile=/etc/trojan-go-mini/trojan-go.pid
-ExecStart=/usr/bin/trojan-go-mini -config /etc/trojan-go-mini/config.json
+PIDFile=/etc/trojan-go-william/trojan-go.pid
+ExecStart=/etc/trojan-go-william -config /etc/trojan-go-william/config.json
 ExecReload=/bin/kill -HUP $MAINPID
 Restart=on-failure
 RestartSec=10
@@ -50,7 +49,7 @@ WantedBy=multi-user.target
 END
 
 # Config
-cat > /etc/trojan-go-mini/config.json << END
+cat > /etc/trojan-go-william/config.json << END
 {
   "run_type": "server",
   "local_addr": "0.0.0.0",
@@ -103,8 +102,8 @@ cat > /etc/trojan-go-mini/config.json << END
     "block": [],
     "default_policy": "proxy",
     "domain_strategy": "as_is",
-    "geoip": "/usr/bin/geoip.dat",
-    "geosite": "/usr/bin/geosite.dat"
+    "geoip": "/etc/trojan-go-william/geoip.dat",
+    "geosite": "/etc/trojan-go-william/geosite.dat"
   },
   "websocket": {
     "enabled": true,
@@ -157,8 +156,8 @@ END
 
 # Starting
 systemctl daemon-reload
-systemctl enable trojan-go-mini
-systemctl start trojan-go-mini
+systemctl enable trojan-go-william
+systemctl start trojan-go-william
 
 
 #path cert /etc/v2ray/v2ray.crt
