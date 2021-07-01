@@ -320,6 +320,10 @@ chmod +x add-trgo
 chmod +x cek-trgo
 chmod +x del-trgo
 chmod +x renew-trgo
+dos2unix add-trgo
+dos2unix cek-trgo
+dos2unix del-trgo
+dos2unix renew-trgo
 sed -i 's/\r$//' update-kernel.sh
 sed -i 's/\r$//' cek-service.sh
 echo "0 0 * * * root xp" >> /etc/crontab
