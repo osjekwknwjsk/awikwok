@@ -10,6 +10,8 @@ Feature Service Script :
 
 ≥ trojan 
 
+≥ trojan-go
+
 ≥ shadowsocks & shadowsocksR
 
 ≥ wireguard
