@@ -32,7 +32,7 @@ OS SUPPORTED :
 
 Harga : » Qris (Dana,Gopay,OVO,DLL.)
 
-20k / 1 ip / 1 bulan
+25k / 1 ip / 1 bulan
 
 80k / 1 ip / lifetime
 
